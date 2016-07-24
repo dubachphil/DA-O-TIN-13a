@@ -1,0 +1,52 @@
+# Pflichtenheft
+## Einleitung
+### Thema
+Die Studie soll Einblicke in die aktuell florierende Technologie    der Container-Virtualisierung Docker geben. Anhand eines konkreten Projektes wird die Technologie erläutert. Es wird aufgezeigt wie ein Clustersystem aufgebaut und erarbeitet wird. Am Ende der Studie wird die Infrastruktur des System analysiert und getestet mittels Benchmark und Failover-Szenarien um die Hochverfügbarkeit zu prüfen. Die Studie soll zudem ein Kompendium sein um die nötigen Kenntnisse der Technologie zu erlernen.
+### Grundlage
+Vor ein paar Monaten habe ich erstmals etwas von Container-Virtualisierung gehört. Wenn ich mich recht erinnere, brachte mich die Java IDE Eclipse auf das Thema. Eclipse präsentierte auf Ihrer Webpage „Eclipse Che“ welches anstatt einer Desktop-Applikation im Webbrowser läuft. Ich wollte natürlich wissen, auf welche Art das Ganze installiert werden kann und wie die Technologie funktioniert. Eclipse hatte gleich 3 Varianten zur Verfügung gestellt um das System zu installieren. Einmal als Image für Virtualbox, einmal als Cloud-Variante auf den Servern von Codenvy.com und einmal als native Version mittels Container auf einem eigenen Server. Ich habe alle 3 Varianten ausprobiert und war begeistert. Ich habe dadurch gemerkt, dass eigentlich alle Varianten mit Linux im selben Container laufen. Bei den Varianten eins und zwei wird einfach eine virtuelle Linux Instanz mit Virtualbox erstellt und gestartet. Der Container welcher danach gestartet wird, war bei allen Varianten der Gleiche. Beim Durchlesen der Dokumentation und beim Testen von Eclipse Che bin ich dann auch auf Docker gestossen. Ich fing an mich für das Thema Docker zu interessieren. In der Zwischenzeit habe ich viel Zeit damit verbracht mich mit der Technologie Docker zu befassen. Ich habe Container virtualisiert wie Wordpress, Nginx, Ubuntu und MySQL. Das Internet und Bücher sind meine steten Begleiter sobald ich Zeit hatte mich damit zu befassen.
+### Motivation
+Da mich das Thema so in den Bann gezogen hat und ich ein Thema für die Diplomarbeit suchen durfte, war das Thema Docker nebst den anderen Themen hoch im Kurs. Ich überlegte mir welches Thema für mich persönlich den grössten Nutzen und Mehrwert generiert. Ich habe mich somit für eine Studie mit Docker entschieden. Nicht damit ich nur eine Arbeit schreibe, sondern um mich persönlich weiterzubilden. Das Thema habe ich bewusst so gewählt, dass es für mich eine hohe Herausforderung ist. Es soll dazu dienen, dass ich mich noch tiefer in das Thema einarbeite. Da ich in der Firma Simeta AG für die Systemadministration, das Prozessmanagement und Evaluierungen von Software Konzepte verantwortlich bin, bin ich der Auffassung, dass es für zukünftige berufliche Projekte sehr Wertvoll sein wird.
+### Alternativen
+Die Docker Technologie steht natürlich nicht alleine da. Es gibt diverse Alternativen für Virtualisierungen. Drei davon werde ich hier erläutern.
+#### System-Virtualisierung Hypervisor Typ-1
+Bei der Typ-1 System-Virtualisierung läuft ein Hypervisor-Betriebssystem nativ auf der Hardware. Mit diesem Betriebsystem ist es durch eine Virtualisierungsschicht möglich weitere Betriebsysteme gleichzeitig zu betreiben. Der sogenannte Hypervisor vermittelt dann den Eindruck als würden alle Systeme eigenständig laufen. Den virtuellen Maschinen können CPU Kerne, Speicher in Form von RAM, Netzwerkkarten und virtuelle Festplatten zugeteilt werden. Somit sind die virtuellen Computer abgekoppelt vom Host-Betriebsystem und nutzen Ihre eigenen Ressourcen. Jede virtuelle Maschine benötigt ein komplettes Betriebssystem um Lauffähig zu sein. Das Host-Betriebssystem kümmert sich dann in der Regel um das Managen der virtuellen Maschinen und muss zwingend in Betrieb sein.
+Hier eine Liste der bekanntesten Typ-1 Betriebsysteme:
+- Microsoft Hyper-V Server
+- Citrix XenServer
+- VMWare vSphere
+- KVM
+#### System-Virtualisierung Hypervisor Typ-2
+Hypervisor Typ-2 ist sehr ähnlich wie Typ-1. Im Gegensatz zu Typ-1 ist das Host-Betriebssystem bei Typ-2 jedoch ein vollwertiges Betriebssystem und nutzt alle verfügbaren Ressourcen welches das Host-Betriebssystem anbietet. Um eine virtuelle Umgebung aufzubauen, ist es notwendig eine zusätzliche Virtualisierungssoftware zu installieren. Diese Software organisiert dann die Ressourcen für die virtuellen Maschinen.
+Die Zuteilung von Hardwareressourcen ist bei Typ-2, wie auch Typ-1 identisch. Die Performance ist bei beiden Systemen gleichwertig, jedoch sind bei Typ-2 weniger Ressourcen für virtuelle Maschinen verfügbar, weil das Host-Betriebssystem mehr Ressourcen in Anspruch nimmt als bei einen reinen Hypervisor-System.
+Liste von bekannten Typ-2 Virtualisierungsanwendungen:
+- VMWare Workstation
+- Oracle VirtualBox
+- Parallels Workstation
+- Microsoft Hyper-V
+#### Container-Virtualisierung
+Diese Art der Virtualisierung setzt ein Host-Betriebssystem voraus, welches auf Linux basiert. Anders als bei den Hypervisor-Systemen wird der Focus direkt auf die Virtualisierung der Anwendung gesetzt. Zum Bespiel ein DHCP Dienst oder ein WebServer. Die Anwendungen oder anders Ausgedrückt die Container nutzen so direkt den Kernel, das System und die Hardware des Host-Systems. Es muss somit nicht zusätzlich ein Betriebssystem virtualisiert werden. Die Container sind wie bei den Hypervisor-Systemen vom Hostsystem abgekoppelt. Sie können somit auch eigene IP-Adressen und Ports haben. Dieser Ansatz hat den Vorteil, dass die Systeme performanter sind und weniger Ressourcen benötigen. Eine Emulation von Grafik oder Hardware findet dabei nicht statt. Der Nachteil ist jedoch, dass die Vielfalt der Anwendungen deutlich eingeschränkter ist. Es kann nur Software verwendet werden, welche auf einem Linux-System lauffähig ist. Grösstenteils basieren die Container auf Open-Source Software und sind zudem Kostenlos. Klassische Desktop Anwendungen sind noch nicht realisierbar. Container-Virtualisierung zielt auf Dienste und Webanwendungen. 
+Folgende bekannte Systeme gibt es:
+- Docker
+- LXC Linux Containers
+- LXD Linux Containers (Nachfolger LXC)
+- OpenVZ
+- Linux VServer
+- Solaris Containers
+- FreeBSD Jails
+#### Vergleich der Alternativen zu Docker
+Das Konzept der 3 Typen von Virtualisierungstechniken ist Unterschiedlich. Je nach Verwendungszweck ist es besser ein Hypervisor zu nutzen. Direkte Alternativen sind deshalb lediglich die Container-Virtualisierungstechniken. Als direkten Konkurrenten sehe ich LXD Containers. Docker baut noch auf LXC Containers auf, was aber nicht unbedingt einen Nachteil sein muss, da es dadurch ein bereits sehr grosses Angebot und weniger Kompatibilitätsprobleme hat. Docker hat mittlerweile die grösste Community und Akzeptanz erreicht. Aktuell gibt es Wöchentlich neue Updates und Zusatztools um mit Docker zu arbeiten. Es wächst und wächst. Sogar Microsoft will für sein neues Server Betriebssystem Docker Container unterstützen. Deshalb sehe ich sehr grosses Potenzial für die Zukunft von Docker.
+## Konkretisierung des Ziels
+### Kompendium
+### Evaluierung der Komponenten
+#### Hardware
+#### Betriebsystem
+#### Clustertechnologie
+#### WebService
+#### Analysemethodik
+### Realisierung der Infrastruktur
+### Analyse des Systems
+### Erfolgskriterien
+
+ 
+
+
