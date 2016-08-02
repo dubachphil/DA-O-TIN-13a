@@ -43,6 +43,10 @@ Wie bereits im Thema erwähnt möchte ich ein Kompendium für Docker schreiben. 
 Die Evaluierung der Komponenten gilt als Vorbereitung für die „Realisierung der Infrastruktur“ für meine Studie. Die Hauptbereiche sind Unterteilt in Teilevaluierungen. Ich werde hier eine Konkretisierung zu den Komponenten schreiben welche Teil der Evaluierung sind. Da die Evaluierung ein grosser Teil der Studie wird, werde ich hier Erläutern was genau Evaluiert werden soll.
 #### Betriebssystem
 Es sollen geeignete Betriebssysteme evaluiert werden, welche mit Docker umgehen können. Dies gilt für einen Hauptserver welcher alles verwaltet sowie für zusätzliche Hosts welche für das Clustersystem unerlässlich sind. Der Hauptserver in unserem Fall der Cluster-Manager wird alle Hosts verwalten und für das Fail-Over zuständig sein. Zudem übernimmt er die Überwachungsaufgabe des ganzen Systems. Die Hosts sollen ein möglichst schlankes Betriebssystem erhalten damit sie möglichst schnell in Betrieb genommen werden können. Diese Systeme sollen verglichen und evaluiert werden, damit das ganze System möglichst effizient betrieben werden kann. In der Evaluierung der Hostsysteme gehe ich auf Grösse des Systems sowie auf Initialisierungsgeschwindigkeit der nötigen Komponenten für Docker ein. Beim Hauptserver wiederum geht es um Benutzerfreundlichkeit der Verwaltungsaufgaben und die Sicherheit.
+#### Hardware
+Die Hardware muss wie bei jeder Software einer Mindestanforderung genügen. Das ist auch bei Docker der Fall. Da eins der Teilziele ein Clustersystem ist, werde ich hier definieren was für eine Hardwareanforderungen sinnvoll ist. Der Nutzen von Hardware ist ein entscheidender Faktor um eben Ressourcen genau so einzusetzen wie sie benötigt werden. Bei Container-Virtualisierung kann man sehr viel Einfluss darauf nehmen, das keine Ressourcen verschwendet werden sollen. Die Evaluierung der Hardware ist auf die Studie ausgerichtet und wird mehrere Hardwarekomponenten beinhalten, da mehrere Maschinen dazu benötigt werden um einen Cluster aufzubauen.
+#### Infrastruktur
+Als Basis für meine Studie soll Container mit einem WebService implementiert werden. Dieser soll dann im Cluster auf mehreren Maschinen laufen und skaliert werden. Es muss also Evaluiert werden, wie die Infrastruktur des Clusters aussehen soll und welche Services darin laufen sollen. Ist die Grundlage des Services ein Container welcher bereits besteht oder soll selber ein WebService Containerfähig gemacht werden. Denkbar wäre auch ein bestehender Container für meine zwecke Umzubauen. Was für einen Nutzen soll der Container haben? Wie soll er implementiert werden? Wie sieht die Infrastruktur aus? Besteht der Container aus einem oder mehreren Containern? Durch die Evaluierung sollen diese Fragen beantwortet werden. 
 #### Clustertechnologie
 Um ein Cluster mit Docker zu erstellen gibt es Methoden wie Sand am Meer. Fast wöchentlich tauchen Neue oder auf eine bestehenden Technologie basierender Methoden im Netz auf. Meine Aufgabe ist es, eine für die Studie passende Technologie zu wählen. Dazu werde ich die Technologien untereinander vergleichen. Wichtig für diesen Punkt ist es, eine stabil laufende und benutzerfreundliche Technologie zu wählen. 
 Die aktuell bekanntesten Tools dafür möchte ich hier auszählen:
@@ -50,10 +54,6 @@ Die aktuell bekanntesten Tools dafür möchte ich hier auszählen:
 - Google Kubernetes
 - Apache Mesos
 - Rancher Cattle
-#### Hardware
-Die Hardware muss wie bei jeder Software einer Mindestanforderung genügen. Das ist auch bei Docker der Fall. Da eins der Teilziele ein Clustersystem ist, werde ich hier definieren was für eine Hardwareanforderungen sinnvoll ist. Der Nutzen von Hardware ist ein entscheidender Faktor um eben Ressourcen genau so einzusetzen wie sie benötigt werden. Bei Container-Virtualisierung kann man sehr viel Einfluss darauf nehmen, das keine Ressourcen verschwendet werden sollen. Die Evaluierung der Hardware ist auf die Studie ausgerichtet und wird mehrere Hardwarekomponenten beinhalten, da mehrere Maschinen dazu benötigt werden um einen Cluster aufzubauen.
-#### Infrastruktur
-Als Basis für meine Studie soll Container mit einem WebService implementiert werden. Dieser soll dann im Cluster auf mehreren Maschinen laufen und skaliert werden. Es muss also Evaluiert werden, wie die Infrastruktur des Clusters aussehen soll und welche Services darin laufen sollen. Ist die Grundlage des Services ein Container welcher bereits besteht oder soll selber ein WebService Containerfähig gemacht werden. Denkbar wäre auch ein bestehender Container für meine zwecke Umzubauen. Was für einen Nutzen soll der Container haben? Wie soll er implementiert werden? Wie sieht die Infrastruktur aus? Besteht der Container aus einem oder mehreren Containern? Durch die Evaluierung sollen diese Fragen beantwortet werden. 
 #### Analysemethodik
 Ich werde im Vorfeld muss ich evaluieren, wie ich die Performance des Clusters und der Skalierung testen und überwachen kann. Da ich ein Clustersystem aufbaue, soll auch getestet werden was bei einem Ausfall einer Maschine geschieht. Um dies zu analysieren, benötige ich diverse Tools. Was ich auf jeden Fall benötige, ist ein Stress-Test Tool um den Service zu überlasten und ein Monitoring-System welches CPU und die Netzauslastung der Container überwacht. Welche Tools für diese Aufgabe in Frage kommen, muss evaluieren werden.
 ### Realisierung der Infrastruktur
@@ -61,6 +61,28 @@ Nachdem alle Komponenten evaluiert worden sind, komme ich zu Realisierung des Sy
 ### Analyse des Systems
 Das Schlusskapitel meiner Studie. Die Analyse der ganzen Infrastruktur welche Realisiert werden soll. Dies bedingt, das die Realisierung erfolgreich war. Hier wird sich zeigen, ob die Infrastruktur des Clusters auch wirklich einen Nutzen hat. Hier muss ich mich komplett überraschen lassen, da ich bisher ein solche Infrastruktur noch nie aufgebaut habe. Ich erhoffe mir natürlich eine bessere Performance, aber ich werde trotzdem ganz neutral an die Sache herangehen. 
 ### Erfolgskriterien
+- [ ] Bewilligung für die Studie erhalten
+- [ ] Alle Komponenten erfolgreich evaluiert
+	- [ ] Betriebssysteme evaluiert
+	- [ ] Hardware evaluiert
+	- [ ] Infrastruktur evaluiert
+	- [ ] Clustertechnologie evaluiert
+	- [ ] Analysemethodik evaluiert
+- [ ] Infrastruktur erfolgreich realisiert
+	- [ ] Aufsetzen der Betriebssysteme
+	- [ ] Docker-Systeme aufgesetzt
+	- [ ] Container implementiert
+	- [ ] Clustersystem lauffähig
+- [ ] Analyse des Systems abgeschlossen
+	- [ ] Analysesoftware installiert
+	- [ ] Auswertung des Systems gemacht
+- [ ] Kompendium geschrieben
+
+
+
+
+
+
 
 
  
